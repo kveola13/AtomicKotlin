@@ -10,4 +10,9 @@ internal class ReturnStringKtTest {
     fun returnStringTest() {
         assertEquals("test", returnString("test"))
     }
+
+    @Test
+    fun returnStringWithLineEndingTest(){
+        assertEquals("Hello\nThere", returnStringWithLineEnding("Hello","There"))
+    }
 }
