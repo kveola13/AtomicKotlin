@@ -64,18 +64,26 @@ private fun buyCoffee(userInput: String?, coffeeStatus: CoffeeStatus): Int {
     if (userInput.equals("q") || userInput.equals("quit")) {
         return -1
     }
-    if (userPurchase == 1 && purchaseEspresso(coffeeStatus)) {
-        print("Transaction attempted: Espresso.\nTransaction pending...\n")
-        purchaseEspresso(coffeeStatus)
-    } else if (userPurchase == 2 && purchaseLatte(coffeeStatus)) {
-        print("Transaction attempted: Latte.\nTransaction pending...\n")
-        purchaseLatte(coffeeStatus)
-    } else if (userPurchase == 3 && purchaseCappuccino(coffeeStatus)) {
-        print("Transaction attempted: Cappuccino.\nTransaction pending...\n")
-        purchaseCappuccino(coffeeStatus)
-    } else {
-        println("We are unfortunately out of stock. Please refill to allow purchase.")
-        return 1
+    when (userPurchase) {
+        1 -> {
+            print("Transaction attempted: Espresso.\nTransaction pending...\n")
+            if (purchaseEspresso(coffeeStatus)) println("Transaction complete")
+            else println("Insufficient ingredients or cups")
+        }
+        2 -> {
+            print("Transaction attempted: Latte.\nTransaction pending...\n")
+            if (purchaseLatte(coffeeStatus)) println("Transaction complete")
+            else println("Insufficient ingredients or cups")
+        }
+        3 -> {
+            print("Transaction attempted: Cappuccino.\nTransaction pending...\n")
+            if (purchaseCappuccino(coffeeStatus)) println("Transaction complete")
+            else println("Insufficient ingredients or cups")
+        }
+        else -> {
+            println("We are unfortunately out of stock. Please refill to allow purchase.")
+            return 1
+        }
     }
     return 1
 }
@@ -85,6 +93,7 @@ fun purchaseEspresso(coffeeStatus: CoffeeStatus): Boolean {
         coffeeStatus.waterAmount -= 250
         coffeeStatus.beanAmount -= 16
         coffeeStatus.cupAmount -= 1
+        coffeeStatus.currencyAmount += 4
         true
     } else {
         false
@@ -99,6 +108,7 @@ fun purchaseLatte(coffeeStatus: CoffeeStatus): Boolean {
         coffeeStatus.milkAmount -= 75
         coffeeStatus.beanAmount -= 20
         coffeeStatus.cupAmount -= 1
+        coffeeStatus.currencyAmount += 7
         true
     } else {
         false
@@ -113,6 +123,7 @@ fun purchaseCappuccino(coffeeStatus: CoffeeStatus): Boolean {
         coffeeStatus.milkAmount -= 100
         coffeeStatus.beanAmount -= 12
         coffeeStatus.cupAmount -= 1
+        coffeeStatus.currencyAmount += 6
         true
     } else {
         false
