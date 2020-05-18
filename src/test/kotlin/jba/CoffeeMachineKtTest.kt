@@ -2,6 +2,7 @@ package jba
 
 import kveola13.jba.makeCoffeeFromDesiredAmountOfCups
 import kveola13.jba.makeCoffeeFromIngredients
+import kveola13.jba.printDesiredCoffee
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
@@ -54,5 +55,13 @@ internal class CoffeeMachineKtTest {
     fun makeCoffeeFromDesiredAmountOfCupsTest6() {
         val done: List<Int> = listOf(200, 50, 15)
         assertEquals("Yes. I can make that amount of coffee (and even 1 more than that)", makeCoffeeFromDesiredAmountOfCups(0, done))
+    }
+
+    @Test
+    fun printDesiredCoffeeTest(){
+        assertEquals("For 25 cups of coffee you will need:\n" +
+                "5000 ml of water\n" +
+                "1250 ml of milk\n" +
+                "375 g of coffee beans", printDesiredCoffee(25))
     }
 }
