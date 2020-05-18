@@ -10,11 +10,11 @@ data class CoffeeStatus(
 
 fun coffeeShopCurrentStatus(coffeeStatus: CoffeeStatus): String {
     return (
-            "The coffee machine has:\n${coffeeStatus.waterAmount} of water\n" +
-                    "${coffeeStatus.milkAmount} of milk\n" +
-                    "${coffeeStatus.beanAmount} of coffee beans\n" +
-                    "${coffeeStatus.cupAmount} of disposable cups\n" +
-                    "${coffeeStatus.currencyAmount} of money"
+            "The coffee machine has:\n${coffeeStatus.waterAmount} ml of water\n" +
+                    "${coffeeStatus.milkAmount} ml of milk\n" +
+                    "${coffeeStatus.beanAmount} grams of coffee beans\n" +
+                    "${coffeeStatus.cupAmount} disposable cups\n" +
+                    "$${coffeeStatus.currencyAmount} of money"
             )
 }
 
