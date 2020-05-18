@@ -2,27 +2,34 @@ package kveola13.jba
 
 import kotlin.math.min
 
+fun printDesiredCoffee(amount: Int): String {
+    val ingredients: List<Int> = makeCoffeeFromIngredients(amount)
+    return "For $amount cups of coffee you will need:\n" +
+            "${ingredients[0]} ml of water\n" +
+            "${ingredients[1]} ml of milk\n" +
+            "${ingredients[2]} g of coffee beans"
+}
+
 fun makeCoffeeFromIngredients(input: Int): List<Int> {
     return listOf(input * 200, input * 50, input * 15)
 }
 
 fun maxAmountOfCoffeeFromIngredients(ingredients: List<Int>): Int {
-    val maxFromWater = ingredients[0]/200
-    val maxFromMilk = ingredients[1]/50
-    val maxFromBeans = ingredients[2]/15
+    val maxFromWater = ingredients[0] / 200
+    val maxFromMilk = ingredients[1] / 50
+    val maxFromBeans = ingredients[2] / 15
     return min(maxFromWater, min(maxFromMilk, maxFromBeans))
 }
 
-fun makeCoffeeFromDesiredAmountOfCups(amount: Int, ingredients: List<Int>) : String {
+fun makeCoffeeFromDesiredAmountOfCups(amount: Int, ingredients: List<Int>): String {
     var returnText = ""
     val maximumCups = maxAmountOfCoffeeFromIngredients(ingredients)
-    if(maximumCups >= amount) {
+    if (maximumCups >= amount) {
         returnText += "Yes. I can make that amount of coffee"
-        if(maximumCups - amount > 0){
+        if (maximumCups - amount > 0) {
             returnText += " (and even ${maximumCups - amount} more than that)"
         }
-    }
-    else {
+    } else {
         returnText = "No. I can make only $maximumCups cups of coffee"
     }
     return returnText
